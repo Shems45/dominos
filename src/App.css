@@ -1,42 +1,51 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+  --love-pink: #fd5d93;
+  --love-purple: #8f5ad6;
+  --love-bg: linear-gradient(135deg, #f9e6f7 0%, #d5e5fa 100%);
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+html, body, #__next, #root {
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+body {
+  background: var(--love-bg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden !important;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.heart-rain {
+  position: fixed !important;
+  top: -50px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 50;
+  animation: heartFall linear forwards;
+  text-shadow: 0 0 10px #fff, 0 0 22px #fd5d9342;
+  will-change: top, left, opacity, transform;
+  opacity: 0.94;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes heartFall {
   to {
-    transform: rotate(360deg);
+    top: 100vh;
+    transform: translateX(35px) rotate(30deg) scale(1.12);
+    opacity: 0.74;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+h1, h2, h3 {
+  font-family: 'Pacifico', cursive;
+  color: var(--love-pink);
+  text-shadow: 0 4px 18px #fff4f4aa;
 }
