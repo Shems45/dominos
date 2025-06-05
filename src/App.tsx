@@ -41,7 +41,7 @@ export default function App() {
       <HeartsRain show={yesPressed} />
       <audio
         ref={audioRef}
-        src="src/audio/lovesong.mp3"
+        src="/audio/lovesong.mp3"
         preload="auto"
       />
       {yesPressed ? (
