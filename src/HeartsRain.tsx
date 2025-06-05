@@ -4,7 +4,7 @@ export function HeartsRain({ show }: { show: boolean }) {
   useEffect(() => {
     if (!show) return;
     const hearts: HTMLDivElement[] = [];
-    for (let i = 0; i < 22; i++) {
+    for (let i = 0; i < 35; i++) {
       const heart = document.createElement("div");
       heart.className = "heart-rain";
       heart.style.position = "fixed";
