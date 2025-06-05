@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { HeartsRain } from "./HeartsRain";
-import "./App.css"; // Zorg dat je CSS geladen wordt!
+import "./App.css";
 
 export default function App() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   const yesButtonSize = noCount * 20 + 16;
 
-  const handleNoClick = () => setNoCount(noCount + 1);
+  const handleYesClick = () => {
+    setYesPressed(true);
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.currentTime = 16; // Begin op 16 seconden
+        audioRef.current.play();
+      }
+    }, 150);
+  };
 
   const getNoButtonText = () => {
     const phrases = [
@@ -29,11 +39,16 @@ export default function App() {
       style={{ minHeight: "100vh" }}
     >
       <HeartsRain show={yesPressed} />
+      <audio
+        ref={audioRef}
+        src="src/audio/lovesong.mp3"
+        preload="auto"
+      />
       {yesPressed ? (
         <>
           <img
             src="https://media1.tenor.com/m/ohpuLM-J-gAAAAAC/rizz.gif"
-            className="rounded-3xl shadow-xl"
+            className="rounded-3xl shadow-xl tiktok-rizz-shake"
             alt="Love"
           />
           <div className="my-4 text-4xl font-bold text-pink-600 drop-shadow-md animate-pulse">
@@ -54,13 +69,13 @@ export default function App() {
             <button
               className="mr-4 rounded-2xl bg-pink-500 px-6 py-3 font-bold text-white shadow-lg hover:bg-pink-600 transition-all duration-200"
               style={{ fontSize: yesButtonSize }}
-              onClick={() => setYesPressed(true)}
+              onClick={handleYesClick}
             >
               Ja! 🍕
             </button>
             <button
-              onClick={handleNoClick}
-              className="rounded-2xl bg-purple-400 px-6 py-3 font-bold text-white shadow-lg hover:bg-purple-600 transition-all duration-200"
+              onClick={() => setNoCount(noCount + 1)}
+              className="rounded-2xl bg-purple-400 px-6 py-3 font-bold text-white shadow-lg hover:bg-purple-600 transition-all duration-200 "
             >
               {noCount === 0 ? "No 😭" : getNoButtonText()}
             </button>
